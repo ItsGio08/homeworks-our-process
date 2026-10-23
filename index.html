@@ -7,10 +7,29 @@
 .op-hero .eyebrow{color:#D1B49E}
 .op-hero h1{font:400 clamp(44px,5.2vw,72px)/1.05 Georgia,serif;letter-spacing:-.03em;margin:16px 0 22px}
 .op-hero p:not(.eyebrow){max-width:540px;font-size:18px;line-height:1.6;color:#eef0ea;margin:0 0 32px}
-.op-timeline-sec{padding:90px 0 110px;background:#fff}
-.op-photos{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:16px;align-items:end;margin-bottom:90px}
-.op-photos img{width:100%;object-fit:cover;border-radius:2px}
-.op-photos img:nth-child(1){height:300px}.op-photos img:nth-child(2){height:220px}.op-photos img:nth-child(3){height:260px}.op-photos img:nth-child(4){height:200px}
+.op-timeline-sec{position:relative;padding:110px 0 120px;background:#fff;overflow:hidden}
+/* Photos float on both sides of the timeline, tilted, like nsshome.co/process. */
+.op-photos{position:absolute;inset:0;pointer-events:none;z-index:0}
+.op-photo{position:absolute;margin:0;width:clamp(11rem,15vw,15.5rem);aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#F0F1EB;box-shadow:0 24px 50px -30px rgba(11,11,12,.45)}
+.op-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.op-photo:nth-child(odd){right:calc(50% + 28rem)}
+.op-photo:nth-child(even){left:calc(50% + 28rem)}
+.op-photo.is-1{aspect-ratio:1/1;top:6%;transform:rotate(-4deg)}
+.op-photo.is-2{top:20%;transform:rotate(5deg)}
+.op-photo.is-3{top:40%;transform:rotate(3deg)}
+.op-photo.is-4{aspect-ratio:1/1;top:57%;transform:rotate(-3deg)}
+.op-photo.is-5{top:72%;transform:rotate(-2deg)}
+.op-photo.is-6{top:84%;transform:rotate(4deg)}
+.op-timeline{z-index:1}
+@media (max-width:1279px){
+  .op-timeline-sec{padding-top:0}
+  .op-photos{position:relative;inset:auto;width:calc(100% - 40px);max-width:620px;height:min(70vw,448px);margin:64px auto 40px}
+  .op-photo:nth-child(n){left:auto;right:auto}
+  .op-photo.is-1{width:42%;top:8%;left:0}
+  .op-photo.is-2{width:31%;top:0;right:2%;transform:rotate(6deg)}
+  .op-photo.is-3{width:31%;top:32%;left:37%}
+  .op-photo:nth-child(n+4){display:none}
+}
 .op-timeline{position:relative;padding-left:56px}
 .op-track{position:absolute;left:11px;top:14px;bottom:40px;width:2px;background:#D8D9D2}
 .op-fill{width:100%;height:0;background:#B9480B;transition:height .15s linear}
@@ -37,8 +56,6 @@
 .op-cta h2{font:400 clamp(34px,3.6vw,48px)/1.15 Georgia,serif;margin:0 0 16px}
 .op-cta p{color:#e3e6df;font-size:18px;margin:0 0 30px}
 @media (max-width:760px){
-  .op-photos{grid-template-columns:1fr 1fr;margin-bottom:60px}
-  .op-photos img:nth-child(n){height:160px}
   .op-timeline{padding-left:44px}
   .op-dot{left:-44px;width:22px;height:22px}
   .op-track{left:10px}
@@ -57,11 +74,13 @@
 </section>
 
 <section class="op-timeline-sec">
-<div class="wrap op-photos" aria-hidden="true">
-<img src="img/kitchen-white-quartz-island.jpg" alt="" loading="lazy"/>
-<img src="img/showroom-design-table.jpg" alt="" loading="lazy"/>
-<img src="img/bath-freestanding-tub-navy.jpg" alt="" loading="lazy"/>
-<img src="img/crew-shower-tile.jpg" alt="" loading="lazy"/>
+<div class="op-photos">
+<figure class="op-photo is-1"><img src="img/kitchen-white-quartz-island.jpg" alt="White kitchen with a veined quartz island, remodeled by HomeWorks" loading="lazy"/></figure>
+<figure class="op-photo is-2"><img src="img/showroom-tile-aisle.jpg" alt="Tile aisle and cabinet displays in the HomeWorks showroom" loading="lazy"/></figure>
+<figure class="op-photo is-3"><img src="img/showroom-design-table.jpg" alt="Design table in front of the tile wall at the HomeWorks showroom" loading="lazy"/></figure>
+<figure class="op-photo is-4"><img src="img/warehouse-forklift.jpg" alt="HomeWorks warehouse in Macomb, where materials are inspected" loading="lazy"/></figure>
+<figure class="op-photo is-5"><img src="img/crew-cabinet-install.jpg" alt="HomeWorks crew installing kitchen cabinets" loading="lazy"/></figure>
+<figure class="op-photo is-6"><img src="img/crew-shower-tile.jpg" alt="HomeWorks installer setting shower tile" loading="lazy"/></figure>
 </div>
 <div class="wrap narrow op-timeline">
 <div class="op-track" aria-hidden="true"><div class="op-fill"></div></div>
